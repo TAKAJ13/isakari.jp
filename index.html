@@ -392,9 +392,7 @@ footer{padding:2rem 6rem;display:flex;justify-content:space-between;align-items:
         <div class="contact-point">VC・投資家キャリアへの相談</div>
       </div>
     </div>
-    <form class="form-area" action="https://formspree.io/f/xjgdbpld" method="POST">
-      <input type="hidden" name="_subject" value="【isakari.jp】キャリア相談のお申し込み">
-      <input type="hidden" name="_language" value="ja">
+    <form class="form-area" id="contactForm">
       <div class="form-field">
         <label class="form-label">お名前<span class="required">必須</span></label>
         <input type="text" name="お名前" class="form-input" placeholder="山田 太郎" required>
@@ -415,7 +413,7 @@ footer{padding:2rem 6rem;display:flex;justify-content:space-between;align-items:
         <label class="form-label">ご相談内容</label>
         <textarea name="ご相談内容" class="form-input" placeholder="転職のご相談、キャリアの方向性、起業との迷いなど、お気軽にお書きください。"></textarea>
       </div>
-      <button type="submit" class="btn-submit">送信する →</button>
+      <button type="button" class="btn-submit" onclick="submitForm()">送信する →</button>
       <p class="form-note">ご入力いただいた個人情報は、ご相談への返答および転職支援サービスの提供のみに使用します。ご本人の承認なく第三者への提供は行いません。詳細は<a href="https://www.xagent.jp/privacy-policy" target="_blank" rel="noopener">エックスエージェント株式会社のプライバシーポリシー</a>をご確認ください。</p>
     </form>
   </div>
@@ -433,5 +431,31 @@ footer{padding:2rem 6rem;display:flex;justify-content:space-between;align-items:
 </footer>
 
 
+<script>
+function submitForm() {
+  var btn = document.querySelector('.btn-submit');
+  btn.textContent = '送信中...';
+  btn.disabled = true;
+
+  var form = document.getElementById('contactForm');
+  var data = {};
+  form.querySelectorAll('input, textarea').forEach(function(el) {
+    if (el.name) data[el.name] = el.value;
+  });
+
+  fetch('https://script.google.com/macros/s/AKfycbwqCbD6WQgJx00IaS5VcXqTPF3onmBhbX77AG7qCiAmGuQHlgzEuMHViVaotiYr55Qa/exec', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(data)
+  })
+  .then(function(res) { return res.json(); })
+  .then(function(data) {
+    btn.textContent = '送信しました。ありがとうございます。';
+  })
+  .catch(function(err) {
+    btn.textContent = '送信しました。ありがとうございます。';
+  });
+}
+</script>
 </body>
 </html>
