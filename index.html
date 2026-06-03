@@ -410,8 +410,9 @@ footer{padding:2rem 6rem;display:flex;justify-content:space-between;align-items:
         <input type="text" name="現在のポジション" class="form-input" placeholder="例）◯◯株式会社 ◯◯事業部長 / ◯◯大学◯◯学部 4年生">
       </div>
       <div class="form-field">
-        <label class="form-label">FacebookまたはLinkedInのURL<span class="required">必須</span></label>
-        <input type="url" name="FacebookまたはLinkedInのURL" class="form-input" placeholder="https://www.facebook.com/yourname" required>
+        <label class="form-label">FacebookまたはLinkedInのURL</label>
+        <p style="font-size:0.72rem;color:rgba(255,255,255,0.5);margin:-0.3rem 0 0.4rem;">※経歴ご確認のため、できる限りご記入くださいませ</p>
+        <input type="url" name="FacebookまたはLinkedInのURL" class="form-input" placeholder="https://www.facebook.com/yourname">
       </div>
       <div class="form-field">
         <label class="form-label">ご相談内容</label>
@@ -437,6 +438,14 @@ footer{padding:2rem 6rem;display:flex;justify-content:space-between;align-items:
 
 <script>
 function submitForm() {
+  var form = document.getElementById('contactForm');
+  var required = form.querySelectorAll('[required]');
+  for (var i = 0; i < required.length; i++) {
+    if (!required[i].value.trim()) {
+      alert('必須項目を入力してください。');
+      return;
+    }
+  }
   var btn = document.querySelector('.btn-submit');
   btn.textContent = '送信中...';
   btn.disabled = true;
