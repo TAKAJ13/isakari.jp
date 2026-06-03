@@ -398,6 +398,10 @@ footer{padding:2rem 6rem;display:flex;justify-content:space-between;align-items:
         <input type="text" name="お名前" class="form-input" placeholder="山田 太郎" required>
       </div>
       <div class="form-field">
+        <label class="form-label">ふりがな<span class="required">必須</span></label>
+        <input type="text" name="ふりがな" class="form-input" placeholder="やまだ たろう" required>
+      </div>
+      <div class="form-field">
         <label class="form-label">メールアドレス<span class="required">必須</span></label>
         <input type="email" name="メールアドレス" class="form-input" placeholder="your@email.com" required>
       </div>
@@ -451,9 +455,11 @@ function submitForm() {
   .then(function(res) { return res.json(); })
   .then(function(data) {
     btn.textContent = '送信しました。ありがとうございます。';
+    setTimeout(function() { window.location.href = 'https://isakari.jp'; }, 2000);
   })
   .catch(function(err) {
     btn.textContent = '送信しました。ありがとうございます。';
+    setTimeout(function() { window.location.href = 'https://isakari.jp'; }, 2000);
   });
 }
 </script>
