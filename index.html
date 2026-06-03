@@ -375,7 +375,9 @@ footer{padding:2rem 6rem;display:flex;justify-content:space-between;align-items:
         <div class="contact-point">VC・投資家キャリアへの相談</div>
       </div>
     </div>
-    <form class="form-area" onsubmit="handleSubmit(event)">
+    <form class="form-area" action="https://formspree.io/f/xjgdbpld" method="POST">
+      <input type="hidden" name="_subject" value="【isakari.jp】キャリア相談のお申し込み">
+      <input type="hidden" name="_language" value="ja">
       <div class="form-field">
         <label class="form-label">お名前<span class="required">必須</span></label>
         <input type="text" class="form-input" placeholder="山田 太郎" required>
@@ -413,13 +415,6 @@ footer{padding:2rem 6rem;display:flex;justify-content:space-between;align-items:
   </div>
 </footer>
 
-<script>
-function handleSubmit(e){
-  e.preventDefault();
-  const btn=e.target.querySelector(".btn-submit");
-  btn.textContent="送信しました。ありがとうございます。";
-  btn.disabled=true;
-}
-</script>
+
 </body>
 </html>
